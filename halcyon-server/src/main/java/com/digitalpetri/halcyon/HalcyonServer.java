@@ -45,9 +45,9 @@ public class HalcyonServer {
         application.setApplicationUri(certificate.getCertificate());
         application.getOpctcpSettings().setCertificateValidator(CertificateValidator.ALLOW_ALL);
         application.getOpctcpSettings().setCertificateValidator(c -> {
-			if (c != null) logger.debug("Validating certificate from: {}", c.getCertificate().getSubjectDN());
-			return null;
-		});
+            if (c != null) logger.debug("Validating certificate from: {}", c.getCertificate().getSubjectDN());
+            return null;
+        });
 
         server = new OpcUaServer(application, halcyonConfig);
 
@@ -82,30 +82,30 @@ public class HalcyonServer {
             return;
         }
 
-		loadDirectory(connectionsDirectory);
+        loadDirectory(connectionsDirectory);
     }
 
-	private void loadDirectory(File directory) {
-		/*
+    private void loadDirectory(File directory) {
+        /*
 		 * Load any .conf files in this directory.
 		 */
-		File[] configFiles = directory.listFiles(pathname -> pathname.getPath().endsWith(".conf"));
-		Arrays.stream(configFiles).forEach(file -> {
-			try {
-				Connection connection = load(file);
+        File[] configFiles = directory.listFiles(pathname -> pathname.getPath().endsWith(".conf"));
+        Arrays.stream(configFiles).forEach(file -> {
+            try {
+                Connection connection = load(file);
 
-				connectionNamespace.addConnection(connection);
-			} catch (Exception e) {
-				logger.error("Error loading connection.", e);
-			}
-		});
+                connectionNamespace.addConnection(connection);
+            } catch (Exception e) {
+                logger.error("Error loading connection.", e);
+            }
+        });
 
 		/*
 		 * Recursively descend into subdirectories loading .conf files as we go.
 		 */
-		File[] dirs = directory.listFiles(File::isDirectory);
-		Arrays.stream(dirs).forEach(this::loadDirectory);
-	}
+        File[] dirs = directory.listFiles(File::isDirectory);
+        Arrays.stream(dirs).forEach(this::loadDirectory);
+    }
 
     private Connection load(File file) throws Exception {
         Config config = ConfigFactory.parseFile(file);
