@@ -50,3 +50,12 @@ Start Halcyon
 /opt/halcyon/bin/halcyon.sh start
 ```
 
+Installing New Connection Types
+-------
+Halcyon doesn't come bundled with any connection types, which admittedly makes for a pretty uninteresting OPC-UA server.
+
+But once you've developed/acquired a new connection type its jar files should be placed in the `lib/` folder and its connection instance configuration files placed in the `connections/` folder.
+
+If you ask me nicely (kevinherron@gmail.com) I'll send you a Modbus connection binary you can test with.
+
+
