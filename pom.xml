@@ -11,6 +11,7 @@
 
     <modules>
         <module>halcyon-api</module>
+        <module>halcyon-examples</module>
         <module>halcyon-jsw</module>
         <module>halcyon-server</module>
     </modules>
